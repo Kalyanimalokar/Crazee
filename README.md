@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Crazee - AI-Powered Creative Platform
 
-## Getting Started
+Welcome to **Crazee**! This is a cutting-edge AI-powered platform designed to revolutionize your creative process. With an integrated suite of AI tools for conversation, code generation, image creation, music, and video production, Crazee brings the power of advanced AI right to your fingertips.
 
-First, run the development server:
+Explore the live application here: [Crazee Live](https://crazee-azure.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Authentication
+- **Clerk Authentication**: Secure and seamless user authentication.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### AI-Powered Tools
+- **Conversation AI**: Powered by OpenAI's GPT, engage in meaningful and intelligent conversations.
+- **Code Generation AI**: Utilize OpenAI's capabilities to generate and refine code snippets.
+- **Image Generation AI**: Create stunning visuals using OpenAI's DALL-E.
+- **Music Generation AI**: Compose unique music tracks with Replicate AI.
+- **Video Generation AI**: Produce captivating videos using Replicate AI.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### API Limit Counter
+- **API Usage Tracking**: Monitor and manage your API usage efficiently.
 
-## Learn More
+### Payments
+- **Stripe Integration**: Easy and secure payment processing for subscription upgrades and purchases.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project is built with the following technologies:
+- **Next.js 13**: For server-side rendering and static site generation.
+- **React**: Frontend framework for building user interfaces.
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
+- **Prisma**: ORM for database management.
+- **Stripe**: Payment gateway integration.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Screenshots
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Dashboard
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Dashboard](https://github.com/Kalyanimalokar/Crazee/assets/82643974/e568c386-3a07-416e-8e7b-c4de94ce8135)
+
+![landingpage](https://github.com/Kalyanimalokar/Crazee/assets/82643974/85c34861-9b3a-4c1d-ba9e-8449e0aaece8)
+
+### Upgrade 
+![upgrade](https://github.com/Kalyanimalokar/Crazee/assets/82643974/22f122d7-dfd1-4409-a1c5-a5bc57f86530)
+
+### Image Generation Example
+![Ai gen 1](https://github.com/Kalyanimalokar/Crazee/assets/82643974/eada26d4-8520-461d-94e7-2d651eb7ae2b)
+
+![ai gen 2](https://github.com/Kalyanimalokar/Crazee/assets/82643974/94e0780e-a14f-491f-9b3d-763864b57cb4)
+
+I do not claim these above-displayed images as my own, these were generated using OpenAi.
+
+### Conversation Example
+![conversation](https://github.com/Kalyanimalokar/Crazee/assets/82643974/a05c67a3-a0e2-4ecc-ae28-26a1161bd7e7)
+
+## Usage
+you can explore various features:
+- **Conversation AI**: Head to the Conversation tab and start chatting with our AI.
+- **Code Generation**: Use the Code tab to generate code snippets.
+- **Image Generation**: Navigate to the Image tab to create stunning visuals.
+- **Music Generation**: Visit the Music tab to compose new tracks.
+- **Video Generation**: Go to the Video tab to produce engaging videos.
