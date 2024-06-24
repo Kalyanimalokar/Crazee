@@ -9,20 +9,17 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-import { MessageSquare } from "lucide-react";
+import { Music } from "lucide-react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
-import { UserAvatar } from "@/components/user-avatar";
-import { BotAvatar } from "@/components/bot-avatar";
+
 
 
 import { formSchema } from "./constants";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
-import { cn } from "@/lib/utils";
 import { useProModal } from "@/hooks/use-pro-modal";
 
 
@@ -30,10 +27,11 @@ import { useProModal } from "@/hooks/use-pro-modal";
 
 
 
-const ConversationPage = () => {
+
+const MusicPage = () => {
 const proModal = useProModal();
 const router = useRouter();
-const [messages,setMessages] = useState<ChatCompletionMessageParam[]>([]);
+const [music,setMusic] = useState<string>();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -46,17 +44,10 @@ const [messages,setMessages] = useState<ChatCompletionMessageParam[]>([]);
 
     const onSubmit = async(values: z.infer<typeof formSchema>) => {
         try{
-            const userMessage: ChatCompletionMessageParam = {
-                role: "user",
-                content: values.prompt,
-            };
-
-            const newMessages = [...messages, userMessage];
-            const response = await axios.post("/api/conversation", {
-                messages: newMessages,
-            });
-            setMessages((current)=>[...current,userMessage,response.data]);
-
+            setMusic(undefined);
+            const response = await axios.post("/api/music", values);
+            
+            setMusic(response.data.audio);
             form.reset();
 
         } catch (error: any){
@@ -71,9 +62,9 @@ const [messages,setMessages] = useState<ChatCompletionMessageParam[]>([]);
     return ( 
         <div>
             <Heading 
-            title="Conversation"
-            description="Let's see what our AI has to say. Ask away"
-            icon={MessageSquare}
+            title="Music Generation"
+            description="Let your prompts make music"
+            icon={Music}
             iconColor="text-orange-500"
             bgColor="bg-orange-500/10"
             />
@@ -105,7 +96,7 @@ const [messages,setMessages] = useState<ChatCompletionMessageParam[]>([]);
                                         focus-visible:ring-0 
                                         focus-visible:ring-transparent"
                                         disabled={isLoading}
-                                        placeholder="What is Schrödinger's cat theory?"
+                                        placeholder="Guitar with a background of flute"
                                         {...field}
                                         />
                                     </FormControl>
@@ -124,46 +115,18 @@ const [messages,setMessages] = useState<ChatCompletionMessageParam[]>([]);
                             <Loader />
                         </div>
                     )}
-                    {messages.length === 0 && !isLoading && (
-                        <Empty label="No Conversation started."/>
+                    {!music && !isLoading && (
+                        <Empty label="No music generated."/>
                     )}
-                    {/* <div className="flex flex-col-reverse gap-y-4">
-                        {messages.map((message)=>(
-                            <div key={message.content}>
-                                {message.content}
-                            </div>
-                        ))}
-                    </div> */}
-                    <div className="flex flex-col-reverse gap-y-4">
-                        {messages.map((message, index) => (
-                            <div 
-                            key={index}
-                            className={cn("p-8 w-full flex items-start gap-x-8 rounded-lg",
-                                message.role === "user" ? "bg-white border border-black/10" : "bg-muted"
-                            )}
-                            >
-                                {message.role === "user" ? <UserAvatar/>:
-                                <BotAvatar/>}
-                                <p className="text-sm">
-                                    {Array.isArray(message.content)
-                                    ? message.content.map((part, partIndex) => {
-                                        if ("text" in part) {
-                                        return <span key={partIndex}>{part.text}</span>;
-                                        } else {
-                                        // Handle 'ChatCompletionContentPartImage' case here
-                                        return null;
-                                        }
-                                    })
-                                    : message.content}
-                                </p>
-                                
-                            </div>
-                        ))}
-                    </div>
+                    {music && (
+                        <audio controls className="w-full mt-8">
+                            <source src={music}/>
+                        </audio>
+                    )}
                 </div>
             </div>
         </div>
      );
 }
  
-export default ConversationPage;
+export default MusicPage;

@@ -22,6 +22,7 @@ import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 
 
@@ -29,6 +30,7 @@ import { BotAvatar } from "@/components/bot-avatar";
 
 
 const CodePage = () => {
+const proModal = useProModal();
 const router = useRouter();
 const [messages,setMessages] = useState<ChatCompletionMessageParam[]>([]);
 
@@ -57,8 +59,9 @@ const [messages,setMessages] = useState<ChatCompletionMessageParam[]>([]);
             form.reset();
 
         } catch (error: any){
-            //ToDo: open Pro Model
-            console.log(error);
+            if(error?.response?.status === 403){
+                proModal.onOpen();
+            }
         }finally {
             router.refresh();
         }
@@ -123,13 +126,6 @@ const [messages,setMessages] = useState<ChatCompletionMessageParam[]>([]);
                     {messages.length === 0 && !isLoading && (
                         <Empty label="No Conversation started."/>
                     )}
-                    {/* <div className="flex flex-col-reverse gap-y-4">
-                        {messages.map((message)=>(
-                            <div key={message.content}>
-                                {message.content}
-                            </div>
-                        ))}
-                    </div> */}
                     <div className="flex flex-col-reverse gap-y-4">
                         {messages.map((message, index) => (
                             <div 
