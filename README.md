@@ -25,7 +25,7 @@ Explore the live application here: [Crazee Live](https://crazee-azure.vercel.app
 ## Project Structure
 
 The project is built with the following technologies:
-- **Next.js 13**: For server-side rendering and static site generation.
+- **Next.js **: For server-side rendering and static site generation.
 - **React**: Frontend framework for building user interfaces.
 - **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
 - **Prisma**: ORM for database management.
